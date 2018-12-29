@@ -1,0 +1,30 @@
+name: DEBUG Testsuite 2
+
+config:
+  frequency:
+    debug: 30000
+  timeout:
+    debug: 900
+  concurrency:
+    global: 99
+  retrydelay:
+    debug: 1100
+  retry:
+    debug: 0
+
+testcases:
+  - name: Various Tests on debug executor; random response delay
+    steps:
+    # Should be timeout by the executor
+    - type: debug
+      name: "2-A - Return OK / Var [10ms - 100ms]"
+      status: "var-10-100"
+      sleep: 0
+      assertions:
+      - result.status ShouldEqual ok
+    - type: debug
+      name: "2-B - Return OK / Var [0ms - 10ms]"
+      status: "var-0-10"
+      sleep: 0
+      assertions:
+        - result.status ShouldEqual ok

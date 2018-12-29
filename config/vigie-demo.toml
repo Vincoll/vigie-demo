@@ -1,0 +1,41 @@
+# Vigie Public Demo
+vigieAPI = 0.5
+environment = "production"
+
+[testfiles]
+  included = ['./test/demo']
+  excluded = ['']
+
+[variables]
+  variables = ['','']
+  included = ['./var']
+  excluded = ['']
+  fromenv = false
+
+[api]
+  enable = true
+  port = 80
+
+[prometheus]
+  enable = true
+  gometrics = true
+  port = 9000
+
+[alerting]
+  enable = false
+  [alerting.email]
+    email = ""
+    smtp  = ""
+  [alerting.slack]
+    hook = ""
+  [alerting.discord]
+    hook = "" # Not used for public demo
+    dev-channel = ""
+    debug-channel = ""
+  [alerting.webhook]
+    hook = ""
+
+[log]
+  stdout = true
+  level = "info"
+  filePath = "/tmp/vigie.log"

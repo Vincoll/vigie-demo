@@ -1,0 +1,91 @@
+name: DEBUG Testsuite
+
+config:
+  frequency:
+    debug: 1000
+  timeout:
+    debug: 900
+  concurrency:
+    global: 99
+  retrydelay:
+    debug: 1100
+  retry:
+    debug: 0
+
+testcases:
+  - name: Various Tests on debug executor 1
+    steps:
+    # Should be timeout by the executor
+    - type: debug
+      name: "A - Return OK / Timeout by Executor (sleep: 3500)"
+      status: "A-4"
+      sleep: 3500
+      assertions:
+      - result.status ShouldEqual ok
+    # Should be OK
+    - type: debug
+      name: "B - Return OK / No Timeout (sleep: 0)"
+      status: "B-1"
+      sleep: 0
+      assertions:
+      - result.status ShouldEqual ok
+    # Should be timeout by the Ticker
+    - type: debug
+      name: "C - Return OK / Timeout by Executor & FailSafe Timeout Ticker (sleep: 9000)"
+      status: "C-3"
+      sleep: 9000
+      assertions:
+      - result.status ShouldEqual ok
+    # Should be OK
+    - type: debug
+      name: "D - Return OK / No Timeout (sleep: 500)"
+      status: "D-2"
+      sleep: 500
+      assertions:
+      - result.status ShouldEqual ok
+    # Should be ERR
+    - type: debug
+      name: "E - Return ER / No Timeout (sleep: 0)"
+      status: "err"
+      sleep: 0
+      assertions:
+        - result.status ShouldEqual uneErreur
+    # Should be OK (Assertion will be KO after)
+    - type: debug
+      name: "F - Return OK / No Timeout (sleep: 0) / Assertion Failure "
+      status: "KO"
+      sleep: 0
+      assertions:
+        - result.status ShouldEqual ok
+    # Should be Timeout
+    - type: debug
+      name: "G - Return ER / No Timeout (sleep: 7000)"
+      status: "err"
+      sleep: 7000
+      assertions:
+        - result.status ShouldEqual uneErreur
+    # Change State every 10sec
+    - type: debug
+      name: "K - Change every 10sec"
+      status: "change10sec"
+      sleep: 0
+      assertions:
+        - result.status ShouldEqual iamok
+
+
+  - name: Various Tests on debug executor 2
+    steps:
+    # Should be OK
+    - type: debug
+      name: "B3 - Return OK / No Timeout (sleep: 0)"
+      status: "B-1"
+      sleep: 333
+      assertions:
+      - result.status ShouldEqual ok
+      # Change State every 10sec
+    - type: debug
+      name: "K3 - Change every 10sec"
+      status: "change10sec"
+      sleep: 0
+      assertions:
+        - result.status ShouldEqual iamok
