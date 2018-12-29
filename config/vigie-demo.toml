@@ -1,6 +1,6 @@
 # Vigie Public Demo
 vigieAPI = 0.5
-environment = "production"
+environment = "dev"
 
 [testfiles]
   included = ['./test/demo']

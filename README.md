@@ -12,8 +12,8 @@ Vigie will be able to monitor many types of services and to confront them with a
 
 ## URLS
 
-* [Vigie Webapi](https://webapi.vigie.vincoll.io)
-* [Vigie Prometheus Exporter](https://promexporter.vigie.vincoll.io)
+* [Vigie Webapi](https://webapi.vigie.vincoll.io/testsuites)
+* [Vigie Prometheus Exporter](https://promexporter.vigie.vincoll.io/metrics)
 * [Vigie Prometheus](https://prometheus.vigie.vincoll.io)
 * [Vigie Dashboard](https://grafana.vigie.vincoll.io)
 
